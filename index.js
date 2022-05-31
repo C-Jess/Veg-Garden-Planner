@@ -16,7 +16,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.json({ hello: "World" });
+  res.status(200).send("Hello World");
 });
 
 app.get("/plants", db.getPlants);
