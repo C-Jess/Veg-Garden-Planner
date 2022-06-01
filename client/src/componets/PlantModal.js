@@ -6,12 +6,26 @@ import Selecter from "react-select";
 
 function PlantModal({
   show,
-  selection,
-  handleClose,
-  handleSelect,
-  handleAdd,
   data,
+  plantName,
+  setPlantName,
+  plantProtection,
+  setPlantProtection,
+  plantID,
+  setPlantID,
+  handleClose,
+  handleAdd,
 }) {
+  const handleSelect = (selectedOption) => {
+    setPlantName(selectedOption.label);
+    setPlantID(selectedOption.value - 1);
+  };
+  const handleProtection = (option) => {
+    if (option.target.value !== "select...") {
+      setPlantProtection(option.target.value);
+    }
+  };
+
   return (
     <div className="plantModal">
       <Modal
@@ -25,7 +39,7 @@ function PlantModal({
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Label>Vegetable</Form.Label>
+            <Form.Label defaultValue={plantName}>Vegetable</Form.Label>
             <Selecter
               options={
                 !data
@@ -37,13 +51,20 @@ function PlantModal({
               }
               onChange={handleSelect}
             ></Selecter>
-            <Form.Label>
-              How your {!selection ? "plant" : selection.label} be sown?
+            <Form.Label defaultValue={plantProtection}>
+              How will your {!plantName ? "plant" : plantName} be sown?
             </Form.Label>
-            <Form.Select>
-              {!selection
-                ? null
-                : console.log(data[selection.value - 1].start_protected)}
+            <Form.Select onChange={handleProtection}>
+              <option>select...</option>
+              {plantID == null ? null : !data[plantID].direct_sow ? (
+                <option>Inside</option>
+              ) : null}
+              {plantID == null ? null : !data[plantID].start_protected ? (
+                <option>Outside: Protected</option>
+              ) : null}
+              {plantID == null ? null : !data[plantID].start_protected ? (
+                <option>Outside: Unprotected</option>
+              ) : null}
             </Form.Select>
           </Form>
         </Modal.Body>

@@ -16,19 +16,39 @@ function Select({ plantList, setPlantList }) {
 
   const handleClose = () => {
     setShow(false);
-    setSelection(null);
+    setPlantID(null);
+    setPlantName(null);
+    setPlantProtection(null);
   };
   const handleShow = () => setShow(true);
 
-  const [selection, setSelection] = React.useState(null);
-
-  const handleSelect = (selectedOption) => {
-    setSelection(selectedOption);
-  };
+  const [plantName, setPlantName] = React.useState(null);
+  const [plantID, setPlantID] = React.useState(null);
+  const [plantProtection, setPlantProtection] = React.useState(null);
 
   const handleAdd = () => {
-    handleClose();
-    setPlantList([...plantList, selection.label]);
+    if (plantName != null && plantProtection != null) {
+      handleClose();
+
+      let plantOffset = null;
+      switch (plantProtection) {
+        case "Inside":
+          plantOffset = data[plantID].inside_sow_offset;
+          break;
+        case "Outside: Protected":
+          plantOffset = data[plantID].protected_sow_offset;
+          break;
+        case "Outside: Unprotected":
+          plantOffset = data[plantID].unprotected_sow_offset;
+          break;
+        default:
+          break;
+      }
+      setPlantList((plantList) => [
+        ...plantList,
+        { id: plantID, name: plantName, offset: plantOffset },
+      ]);
+    }
   };
 
   return (
@@ -37,21 +57,28 @@ function Select({ plantList, setPlantList }) {
         Add Plant
       </Button>
 
-      {plantList.map((plantname) => {
+      {plantList.map((plant, index) => {
+        console.log(plant);
         return (
           <Plant
+            key={index}
             plantList={plantList}
             setPlantList={setPlantList}
-            plant={plantname}
+            plantID={index}
+            plantName={plant.name}
           />
         );
       })}
       <PlantModal
         show={show}
         data={!data ? null : data}
-        selection={selection}
+        plantName={plantName}
+        setPlantName={setPlantName}
+        plantProtection={plantProtection}
+        setPlantProtection={setPlantProtection}
+        setPlantID={setPlantID}
+        plantID={plantID}
         handleClose={handleClose}
-        handleSelect={handleSelect}
         handleAdd={handleAdd}
       />
     </div>
