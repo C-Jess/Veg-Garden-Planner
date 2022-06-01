@@ -12,6 +12,7 @@ function Navigation() {
           <Nav.Link href="select">Select</Nav.Link>
           <Nav.Link href="plan">Plan</Nav.Link>
           <Nav.Link href="diary">Diary</Nav.Link>
+          <Nav.Link href="settings">Settings</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -6,13 +6,15 @@ function Diary({ frostDates, setFrostDates }) {
   const [events, setEvents] = React.useState([]);
   const plantList = JSON.parse(localStorage.getItem("plantList"));
 
-  const handleSetFrostDates = () => {};
   const calculateSowDates = () => {
     if (events.length !== plantList.length) {
       for (const index in plantList) {
         const plant = plantList[index];
         console.log(frostDates.lastFrost);
-        const week = moment().set("week", frostDates.lastFrost + plant.offset);
+        const week = moment().set(
+          "week",
+          moment(frostDates.lastFrost).get("week") + plant.offset
+        );
         const name = "";
         const event = {
           name: name.concat(plant.name, " (", plant.protection, ")"),
@@ -23,19 +25,8 @@ function Diary({ frostDates, setFrostDates }) {
     }
   };
 
-  const handleFrostDates = () => {
-    // temp setting frost dates
-    const first = moment().set({ day: 1, month: 9 }); // first of october
-    const last = moment().set({ day: 1, month: 4 }); // first of may
-    setFrostDates({
-      firstFrost: moment(first).get("week"),
-      lastFrost: moment(last).get("week"),
-    });
-  };
-
   return (
     <div className="diary">
-      <Button onClick={handleFrostDates}>Set Frost Dates</Button>
       <Button onClick={calculateSowDates}>Generate Dates</Button>
       {!events
         ? null

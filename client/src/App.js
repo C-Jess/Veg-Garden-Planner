@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Select from "./views/Select";
 import Diary from "./views/Diary";
 import Navigation from "./componets/Navigation";
+import Settings from "./views/Settings";
 
 function App() {
   const [plants, setPlants] = React.useState(() => {
@@ -10,14 +11,17 @@ function App() {
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
-  const [frostDates, setFrostDates] = React.useState({
-    firstFrost: null,
-    lastFrost: null,
+  const [frostDates, setFrostDates] = React.useState(() => {
+    const saved = localStorage.getItem("frostDates");
+    return JSON.parse(saved) || { firstFrost: null, lastFrost: null };
   });
 
   React.useEffect(() => {
     localStorage.setItem("plantList", JSON.stringify(plants));
   }, [plants]);
+  React.useEffect(() => {
+    localStorage.setItem("frostDates", JSON.stringify(frostDates));
+  }, [frostDates]);
 
   return (
     <div className="App">
@@ -34,6 +38,15 @@ function App() {
               element={
                 <Diary
                   plantList={plants}
+                  frostDates={frostDates}
+                  setFrostDates={setFrostDates}
+                />
+              }
+            />
+            <Route
+              path="settings"
+              element={
+                <Settings
                   frostDates={frostDates}
                   setFrostDates={setFrostDates}
                 />
