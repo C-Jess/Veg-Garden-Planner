@@ -1,8 +1,11 @@
 import React from "react";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
+import LocationModal from "../componets/LocationModal";
 
 function Diary({ frostDates, setFrostDates }) {
+  const [show, setShow] = React.useState(frostDates.firstFrost == null);
+
   const [events, setEvents] = React.useState([]);
   const plantList = JSON.parse(localStorage.getItem("plantList"));
 
@@ -37,6 +40,12 @@ function Diary({ frostDates, setFrostDates }) {
               </div>
             );
           })}
+
+      <LocationModal
+        show={show}
+        setShow={setShow}
+        setFrostDates={setFrostDates}
+      />
     </div>
   );
 }

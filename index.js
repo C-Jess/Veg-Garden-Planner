@@ -20,6 +20,10 @@ app.use(
 
 app.get("/plants", db.getPlants);
 
+app.get("/token", (req, res) => {
+  res.json(process.env.OPENWEATHER_API_KEY);
+});
+
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });

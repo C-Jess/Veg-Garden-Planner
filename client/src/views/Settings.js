@@ -45,8 +45,8 @@ function Settings({ frostDates, setFrostDates }) {
         date: inputs.lastFrostDay,
       });
       setFrostDates({
-        firstFrost: moment(firstFrost),
-        lastFrost: moment(lastFrost),
+        firstFrost: firstFrost,
+        lastFrost: lastFrost,
       });
       alert("frostdates set");
     }
