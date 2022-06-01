@@ -46,7 +46,12 @@ function Select({ plantList, setPlantList }) {
       }
       setPlantList((plantList) => [
         ...plantList,
-        { id: plantID, name: plantName, offset: plantOffset },
+        {
+          id: plantID,
+          name: plantName,
+          protection: plantProtection,
+          offset: plantOffset,
+        },
       ]);
     }
   };
@@ -66,6 +71,7 @@ function Select({ plantList, setPlantList }) {
             setPlantList={setPlantList}
             plantID={index}
             plantName={plant.name}
+            plantProtection={plant.protection}
           />
         );
       })}
