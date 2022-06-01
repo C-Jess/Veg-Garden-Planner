@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 function Plant({ plantList, setPlantList, plantID, plantName }) {
   const handleDelete = () => {
@@ -7,8 +8,10 @@ function Plant({ plantList, setPlantList, plantID, plantName }) {
 
   return (
     <div className="Plant">
-      {plantName}
-      <button onClick={handleDelete}>Delete</button>
+      {plantName}{" "}
+      <Button variant="outline-secondary" size="sm" onClick={handleDelete}>
+        Delete
+      </Button>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import "./Select.css";
 import Button from "react-bootstrap/Button";
-import Plant from "./componets/Plants";
-import PlantModal from "./componets/PlantModal";
+import Plant from "../componets/Plants";
+import PlantModal from "../componets/PlantModal";
 
 function Select({ plantList, setPlantList }) {
   const [data, setData] = React.useState(null);

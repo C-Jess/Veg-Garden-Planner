@@ -23,6 +23,8 @@ function PlantModal({
   const handleProtection = (option) => {
     if (option.target.value !== "select...") {
       setPlantProtection(option.target.value);
+    } else {
+      setPlantProtection(null);
     }
   };
 

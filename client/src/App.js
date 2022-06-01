@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "./Select";
+import Select from "./views/Select";
 
 function App() {
   const [plants, setPlants] = React.useState([]);
