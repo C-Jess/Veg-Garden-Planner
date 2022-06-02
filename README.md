@@ -20,7 +20,7 @@ Here is a live demo:
 ## Development
 Follow these steps to run this project locally:
 1. Install [Node.js](https://nodejs.org/)
-2. Fork and clone repository
+2. Fork and clone [repository](https://github.com/C-Jess/Veg-Garden-Planner)
 3. Install and set up [PostgreSQL](https://www.postgresql.org/) database
 4. Add file `.env` and add environment variables
 5. `npm install`
