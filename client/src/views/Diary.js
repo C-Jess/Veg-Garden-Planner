@@ -21,7 +21,7 @@ function Diary({ frostDates, setFrostDates }) {
         const name = "";
         const event = {
           name: name.concat(plant.name, " (", plant.protection, ")"),
-          date: moment(week).format("DD/MM"),
+          date: moment(week).format("Do MMM"),
         };
         setEvents((events) => [...events, event]);
       }
