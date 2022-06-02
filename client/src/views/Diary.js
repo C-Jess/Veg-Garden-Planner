@@ -13,7 +13,6 @@ function Diary({ frostDates, setFrostDates }) {
     if (events.length !== plantList.length) {
       for (const index in plantList) {
         const plant = plantList[index];
-        console.log(frostDates.lastFrost);
         const week = moment().set(
           "week",
           moment(frostDates.lastFrost).get("week") + plant.offset
@@ -36,9 +35,9 @@ function Diary({ frostDates, setFrostDates }) {
       <p>{plantList.length === 0 ? "Please add some plants" : null}</p>
       {!events
         ? null
-        : events.map((event) => {
+        : events.map((event, index) => {
             return (
-              <div>
+              <div key={index}>
                 {event.name}: {event.date}
               </div>
             );
