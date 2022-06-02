@@ -4,6 +4,7 @@ import Select from "./views/Select";
 import Diary from "./views/Diary";
 import Navigation from "./componets/Navigation";
 import Settings from "./views/Settings";
+import Plan from "./views/Plan";
 
 function App() {
   const [plants, setPlants] = React.useState(() => {
@@ -43,6 +44,7 @@ function App() {
                 />
               }
             />
+            <Route path="plan" element={<Plan />} />
             <Route
               path="settings"
               element={
