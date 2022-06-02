@@ -30,7 +30,10 @@ function Diary({ frostDates, setFrostDates }) {
 
   return (
     <div className="diary">
-      <Button onClick={calculateSowDates}>Generate Dates</Button>
+      <Button onClick={calculateSowDates} disabled={plantList.length === 0}>
+        Generate Dates
+      </Button>
+      <p>{plantList.length === 0 ? "Please add some plants" : null}</p>
       {!events
         ? null
         : events.map((event) => {
