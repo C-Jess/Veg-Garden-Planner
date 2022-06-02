@@ -63,7 +63,6 @@ function Select({ plantList, setPlantList }) {
       </Button>
 
       {plantList.map((plant, index) => {
-        console.log(plant);
         return (
           <Plant
             key={index}
