@@ -1,5 +1,4 @@
 import React from "react";
-import "./Select.css";
 import Button from "react-bootstrap/Button";
 import Plant from "../componets/Plants";
 import PlantModal from "../componets/PlantModal";
