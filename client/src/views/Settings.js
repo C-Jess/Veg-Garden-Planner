@@ -7,12 +7,15 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 
 function Settings({ frostDates, setFrostDates }) {
+  const [inputsChanged, setInputsChanged] = React.useState(false);
+  const [inputsEmpty, setInputsEmpty] = React.useState(true);
   const [inputs, setInputs] = React.useState(() => {
     if (frostDates.firstFrost != null) {
       const firstDay = moment(frostDates.firstFrost).get("date");
       const firstMonth = moment(frostDates.firstFrost).get("month") + 1;
       const lastDay = moment(frostDates.lastFrost).get("date");
       const lastMonth = moment(frostDates.lastFrost).get("month") + 1;
+      setInputsEmpty(false);
       return {
         firstFrostDay: firstDay,
         firstFrostMonth: firstMonth,
@@ -28,6 +31,8 @@ function Settings({ frostDates, setFrostDates }) {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
+    setInputsChanged(true);
+    setInputsEmpty(false);
   };
 
   const handleSubmit = (event) => {
@@ -49,7 +54,8 @@ function Settings({ frostDates, setFrostDates }) {
         firstFrost: firstFrost,
         lastFrost: lastFrost,
       });
-      alert("frostdates set");
+      setInputsChanged(false);
+      setInputsEmpty(false);
     }
   };
 
@@ -59,6 +65,8 @@ function Settings({ frostDates, setFrostDates }) {
       lastFrost: null,
     });
     setInputs({});
+    setInputsEmpty(true);
+    setInputsChanged(false);
   };
 
   return (
@@ -110,8 +118,12 @@ function Settings({ frostDates, setFrostDates }) {
             </FloatingLabel>
           </Col>
         </Row>
-        <Button type="submit">Save</Button>
-        <Button onClick={handleClear}>Clear</Button>
+        <Button type="submit" disabled={!inputsChanged}>
+          Save
+        </Button>
+        <Button onClick={handleClear} disabled={inputsEmpty}>
+          Clear
+        </Button>
       </Form>
     </div>
   );
