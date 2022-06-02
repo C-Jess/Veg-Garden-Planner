@@ -29,6 +29,7 @@ function Settings({ frostDates, setFrostDates }) {
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
+
   const handleSubmit = (event) => {
     if (
       inputs.firstFrostDay &&
@@ -50,6 +51,14 @@ function Settings({ frostDates, setFrostDates }) {
       });
       alert("frostdates set");
     }
+  };
+
+  const handleClear = () => {
+    setFrostDates({
+      firstFrost: null,
+      lastFrost: null,
+    });
+    setInputs({});
   };
 
   return (
@@ -102,6 +111,7 @@ function Settings({ frostDates, setFrostDates }) {
           </Col>
         </Row>
         <Button type="submit">Save</Button>
+        <Button onClick={handleClear}>Clear</Button>
       </Form>
     </div>
   );

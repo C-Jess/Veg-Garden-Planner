@@ -18,7 +18,7 @@ function LocationModal({ show, setShow, setFrostDates }) {
       setLocationStatus(null);
       setLocationStatus("Not supported");
     } else {
-      setLocationStatus("Locating");
+      setLocationStatus("Locating...");
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation(position.coords);
@@ -77,7 +77,7 @@ function LocationModal({ show, setShow, setFrostDates }) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Generate Your Frost Dates</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -98,7 +98,7 @@ function LocationModal({ show, setShow, setFrostDates }) {
           </Button>
           <Button
             variant="primary"
-            disabled={location == null}
+            disabled={location == null || calulationStatus != null}
             onClick={handleFrostDates}
           >
             {calulationStatus ? calulationStatus : "Generate"}
