@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import Plant from "../componets/Plants";
+import Plant from "../componets/Plant";
 import PlantModal from "../componets/PlantModal";
 
 function Select({ plantList, setPlantList }) {
@@ -46,7 +46,7 @@ function Select({ plantList, setPlantList }) {
       setPlantList((plantList) => [
         ...plantList,
         {
-          id: plantID,
+          id: plantList.length,
           name: plantName,
           protection: plantProtection,
           offset: plantOffset,
@@ -55,6 +55,10 @@ function Select({ plantList, setPlantList }) {
     }
   };
 
+  function handleDelete(id) {
+    setPlantList(plantList.filter((element, index) => index !== id));
+  }
+
   return (
     <div className="Plan">
       <Button size="lg" onClick={handleShow}>
@@ -62,17 +66,9 @@ function Select({ plantList, setPlantList }) {
       </Button>
 
       {plantList.map((plant, index) => {
-        return (
-          <Plant
-            key={index}
-            plantList={plantList}
-            setPlantList={setPlantList}
-            plantID={index}
-            plantName={plant.name}
-            plantProtection={plant.protection}
-          />
-        );
+        return <Plant key={index} plant={plant} handleDelete={handleDelete} />;
       })}
+
       <PlantModal
         show={show}
         data={!data ? null : data}
