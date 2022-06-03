@@ -4,27 +4,16 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Selecter from "react-select";
 
-function PlantModal({
-  show,
-  data,
-  plantName,
-  setPlantName,
-  plantProtection,
-  setPlantProtection,
-  plantID,
-  setPlantID,
-  handleClose,
-  handleAdd,
-}) {
+function PlantModal({ show, data, plant, handleClose, handleAdd }) {
   const handleSelect = (selectedOption) => {
-    setPlantName(selectedOption.label);
-    setPlantID(selectedOption.value - 1);
+    //setPlantName(selectedOption.label);
+    //setPlantID(selectedOption.value - 1);
   };
   const handleProtection = (option) => {
     if (option.target.value !== "select...") {
-      setPlantProtection(option.target.value);
+      //setPlantProtection(option.target.value);
     } else {
-      setPlantProtection(null);
+      //setPlantProtection(null);
     }
   };
 
@@ -41,8 +30,9 @@ function PlantModal({
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Label defaultValue={plantName}>Vegetable</Form.Label>
+            <Form.Label htmlFor="vegSelector">Vegetable</Form.Label>
             <Selecter
+              classNamePrefix="react_select"
               options={
                 !data
                   ? null
@@ -52,27 +42,19 @@ function PlantModal({
                     }))
               }
               onChange={handleSelect}
-            ></Selecter>
-            <Form.Label defaultValue={plantProtection}>
-              How will your {!plantName ? "plant" : plantName} be sown?
+            />
+            <Form.Label htmlFor="protectionSelector">
+              Sowing Location
             </Form.Label>
-            <Form.Select onChange={handleProtection}>
-              <option>select...</option>
-              {plantID == null ? null : !data[plantID].direct_sow ? (
-                <option>Inside</option>
-              ) : null}
-              {plantID == null ? null : !data[plantID].start_protected ? (
-                <option>Outside: Protected</option>
-              ) : null}
-              {plantID == null ? null : !data[plantID].start_protected ? (
-                <option>Outside: Unprotected</option>
-              ) : null}
-            </Form.Select>
+            <Form.Select
+              id="protectionSelector"
+              onChange={handleProtection}
+            ></Form.Select>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
           <Button variant="primary" onClick={handleAdd}>
             Add
