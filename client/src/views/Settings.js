@@ -72,7 +72,7 @@ function Settings({ frostDates, setFrostDates }) {
   return (
     <div className="settings">
       <Form onSubmit={handleSubmit}>
-        <Form.Label>{"Last Frost (in spring)"}</Form.Label>
+        <Form.Label>Last Frost (in spring)</Form.Label>
         <Row>
           <Col>
             <FloatingLabel label="Day">
@@ -95,7 +95,7 @@ function Settings({ frostDates, setFrostDates }) {
             </FloatingLabel>
           </Col>
         </Row>
-        <Form.Label>{"Last Frost (in autumn/winter)"}</Form.Label>
+        <Form.Label>First Frost (in autumn/winter)</Form.Label>
         <Row>
           <Col>
             <FloatingLabel label="Day">
