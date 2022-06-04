@@ -1,0 +1,33 @@
+{
+  "name": "veg-garden-planner",
+  "version": "1.0.0",
+  "description": "plan and generate a diary for your veg garden",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C-Jess/Veg-Garden-Planner.git"
+  },
+  "author": "Jessica Christensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C-Jess/Veg-Garden-Planner/issues"
+  },
+  "homepage": "https://github.com/C-Jess/Veg-Garden-Planner#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.16"
+  }
+}
