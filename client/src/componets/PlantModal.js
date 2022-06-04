@@ -4,10 +4,10 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Selecter from "react-select";
 
-function PlantModal({ show, setShow, data, plant, setPlantList }) {
+function PlantModal({ show, setShow, data, setPlantList }) {
   const [inputs, setInputs] = React.useState({});
 
-  const handleSelecter = (option) => {
+  const handleSelecterChange = (option) => {
     const label = option.label;
     const value = option.value;
     setInputs((values) => ({ ...values, name: label }));
@@ -80,7 +80,7 @@ function PlantModal({ show, setShow, data, plant, setPlantList }) {
                       label: d.plant_name,
                     }))
               }
-              onChange={handleSelecter}
+              onChange={handleSelecterChange}
             />
             <Form.Label htmlFor="protectionSelector">
               Sowing Location
