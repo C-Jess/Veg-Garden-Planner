@@ -34,6 +34,7 @@ it("renders without crashing", () => {
 describe("vegetable select tests", () => {
   it("renders a searchable drop down", async () => {
     render(<PlantModal data={data} show={true} plant={testData[0]} />);
+    // eslint-disable-next-line testing-library/no-node-access
     expect(document.querySelector(".react_select__input")).toBeInTheDocument();
   });
 });
