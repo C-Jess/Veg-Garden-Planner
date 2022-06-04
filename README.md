@@ -16,7 +16,7 @@ Here is a live demo: https://veg-garden-planner.herokuapp.com
 
 ### Select
 
-![Add Plant](/Media/AddPlant.gif)
+![Add Plant](/Media/SelectPage.gif)
 
 ### Diary
 
