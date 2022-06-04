@@ -9,7 +9,7 @@ function PlantModal({ show, setShow, data, setPlantList }) {
 
   const handleSelecterChange = (option) => {
     const label = option.label;
-    const value = option.value;
+    const value = option.value - 1;
     setInputs((values) => ({ ...values, name: label }));
     setInputs((values) => ({ ...values, id: value }));
   };
