@@ -31,25 +31,22 @@ function LocationModal({ show, setShow, setFrostDates }) {
     }
   };
 
-  const handleFrostDates = () => {
-    setFrostDates(calculateFrostDates(getWeatherData()));
+  const handleFrostDates = async () => {
+    const weatherData = await getWeatherData();
+    setFrostDates(calculateFrostDates(weatherData.result));
     setShow(false);
   };
 
-  function getWeatherData() {
+  async function getWeatherData() {
     setCalculationStatus("Fetching Data...");
-    fetch("/token")
-      .then((res) => res.json())
-      .then((data) =>
-        fetch(
-          `https://history.openweathermap.org/data/2.5/aggregated/year?units=metric&lat=${location.latitude}&lon=${location.longitude}&appid=${data}`
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            setCalculationStatus("Calculating...");
-            return data;
-          })
-      );
+    const token = await fetch("/token").then((res) => res.json());
+    console.log("Getting data");
+    const data = await fetch(
+      `https://history.openweathermap.org/data/2.5/aggregated/year?units=metric&lat=${location.latitude}&lon=${location.longitude}&appid=${token}`
+    ).then((res) => res.json());
+    console.log("Got data");
+    setCalculationStatus("Calculating...");
+    return Promise.resolve(data);
   }
 
   function calculateFrostDates(weatherData) {
@@ -68,6 +65,7 @@ function LocationModal({ show, setShow, setFrostDates }) {
         break;
       }
     }
+    setCalculationStatus("Done");
     return { firstFrost: firstFrost, lastFrost: lastFrost };
   }
 
@@ -84,8 +82,6 @@ function LocationModal({ show, setShow, setFrostDates }) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Label>Your Location</Form.Label>
-            <Form.Control type="text" />
             <Button
               onClick={handleGetLocation}
               disabled={locationStatus != null}
