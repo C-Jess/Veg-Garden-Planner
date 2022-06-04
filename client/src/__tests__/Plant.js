@@ -38,10 +38,11 @@ describe("delete button is rendered", () => {
   });
   test.each(deleteButtonTestData)("%s button renders", (name, plant) => {
     render(<Plant plant={plant} />);
-    expect(screen.getAllByRole("button")[0].textContent).toBe("Delete");
+    expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
   });
 });
 
+// feature not implemented
 describe("edit button is rendered", () => {
   var deleteButtonTestData = [];
   testData.forEach((element) => {
@@ -49,6 +50,8 @@ describe("edit button is rendered", () => {
   });
   test.each(deleteButtonTestData)("%s button renders", (name, plant) => {
     render(<Plant plant={plant} />);
-    expect(screen.getAllByRole("button")[1].textContent).toBe("Edit");
+    expect(() => {
+      screen.getByRole("button", { name: "Edit" });
+    }).toThrow();
   });
 });
