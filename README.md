@@ -1,4 +1,5 @@
 # Veg Garden Planner
+
 <table>
 <tr>
 <td>
@@ -7,26 +8,28 @@ Veg Garden Panner is a website which generates a calendar of sowing dates for ve
 </tr>
 </table>
 
-
 ## Demo
+
 Here is a live demo: https://veg-garden-planner.herokuapp.com
 
 ## Site
-### Select
-![Select Page](/Images/SelectPage.PNG)
-#### Add a vegetable
-![Add Plant](/Images/SelectPageModal.PNG)
-### Diary
-#### Calculate Frost Dates
-![Calculate Frost Dates](/Images/DiaryPageModal.PNG)
-#### Generate Sowing Dates
-![Generate Sowing Dates](/Images/DiaryPage.PNG)
-### Settings
-![Settings Page](/Images/SettingsPage.PNG)
 
+### Select
+
+![Add Plant](/Media/AddPlant.gif)
+
+### Diary
+
+![Generate Sowing Dates](/Media/DiaryPage.gif)
+
+### Settings
+
+![Settings Page](/Media/SettingsPage.gif)
 
 ## Development
+
 Follow these steps to run this project locally:
+
 1. Install [Node.js](https://nodejs.org/)
 2. Fork and clone [repository](https://github.com/C-Jess/Veg-Garden-Planner)
 3. Install and set up [PostgreSQL](https://www.postgresql.org/) database
@@ -37,6 +40,7 @@ Follow these steps to run this project locally:
 8. Go to [localhost:3001](https://localhost:3001)
 
 ### Environment Variables
+
 - `DB_USER` Set to your database username
 - `DB_PASSWORD` Set to your database password
 - `DB_HOST` Set to where your database is hosted (e.g. `localhost`)
@@ -45,7 +49,9 @@ Follow these steps to run this project locally:
 - `OPENWEATHER_API_KEY` Set to your API key from [OpenWeather](https://home.openweathermap.org/api_keys)
 
 ### PostgreSQL Database Configuration
+
 #### Create Tables
+
 ```SQL
 CREATE TABLE plants
 (
@@ -60,7 +66,9 @@ CREATE TABLE plants
 	image_URL VARCHAR(500)
   )
 ```
+
 #### Insert Sample Data
+
 ```SQL
 INSERT INTO plants
 (plant_name,alt_name,start_protected,direct_sow,inside_sow_offset,protected_sow_offset,unprotected_sow_offset)
