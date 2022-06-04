@@ -9,27 +9,33 @@ function Diary({ frostDates, setFrostDates }) {
   const [events, setEvents] = React.useState([]);
   const plantList = JSON.parse(localStorage.getItem("plantList"));
 
-  const calculateSowDates = () => {
+  function calculateSowDates() {
+    const eventList = [];
+    for (const index in plantList) {
+      const plant = plantList[index];
+      const week = moment().set(
+        "week",
+        moment(frostDates.lastFrost).get("week") + plant.offset
+      );
+      const name = "";
+      const event = {
+        name: name.concat(plant.name, " (", plant.protection, ")"),
+        date: moment(week).format("Do MMM"),
+      };
+      eventList.push(event);
+    }
+    return eventList;
+  }
+
+  const handleGenerate = () => {
     if (events.length !== plantList.length) {
-      for (const index in plantList) {
-        const plant = plantList[index];
-        const week = moment().set(
-          "week",
-          moment(frostDates.lastFrost).get("week") + plant.offset
-        );
-        const name = "";
-        const event = {
-          name: name.concat(plant.name, " (", plant.protection, ")"),
-          date: moment(week).format("Do MMM"),
-        };
-        setEvents((events) => [...events, event]);
-      }
+      setEvents(calculateSowDates());
     }
   };
 
   return (
     <div className="diary">
-      <Button onClick={calculateSowDates} disabled={plantList.length === 0}>
+      <Button onClick={handleGenerate} disabled={plantList.length === 0}>
         Generate Dates
       </Button>
       <p>{plantList.length === 0 ? "Please add some plants" : null}</p>
