@@ -32,25 +32,27 @@ function LocationModal({ show, setShow, setFrostDates }) {
   };
 
   const handleFrostDates = () => {
-    if (location != null) {
-      setCalculationStatus("Fetching Data...");
-      fetch("/token")
-        .then((res) => res.json())
-        .then((data) =>
-          fetch(
-            `https://history.openweathermap.org/data/2.5/aggregated/year?units=metric&lat=${location.latitude}&lon=${location.longitude}&appid=${data}`
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              setCalculationStatus("Calculating...");
-              populateWeatherData(data.result);
-            })
-            .then(() => setShow(false))
-        );
-    }
+    setFrostDates(calculateFrostDates(getWeatherData()));
+    setShow(false);
   };
 
-  const populateWeatherData = (weatherData) => {
+  function getWeatherData() {
+    setCalculationStatus("Fetching Data...");
+    fetch("/token")
+      .then((res) => res.json())
+      .then((data) =>
+        fetch(
+          `https://history.openweathermap.org/data/2.5/aggregated/year?units=metric&lat=${location.latitude}&lon=${location.longitude}&appid=${data}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setCalculationStatus("Calculating...");
+            return data;
+          })
+      );
+  }
+
+  function calculateFrostDates(weatherData) {
     var lastFrost = null;
     var firstFrost = null;
     for (const index in weatherData) {
@@ -66,8 +68,8 @@ function LocationModal({ show, setShow, setFrostDates }) {
         break;
       }
     }
-    setFrostDates({ firstFrost: firstFrost, lastFrost: lastFrost });
-  };
+    return { firstFrost: firstFrost, lastFrost: lastFrost };
+  }
 
   return (
     <div className="plantModal">
