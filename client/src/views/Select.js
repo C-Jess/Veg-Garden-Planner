@@ -19,7 +19,7 @@ function Select({ plantList, setPlantList }) {
   }
 
   return (
-    <div className="Plan">
+    <div className="Select">
       <Button size="lg" onClick={handleShow}>
         Add Plant
       </Button>
