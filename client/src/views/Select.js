@@ -15,7 +15,7 @@ function Select({ plantList, setPlantList }) {
   const handleShow = () => setShow(true);
 
   function handleDelete(id) {
-    setPlantList(plantList.filter((element, index) => index !== id));
+    setPlantList(plantList.filter((element) => element.id !== id));
   }
 
   return (
