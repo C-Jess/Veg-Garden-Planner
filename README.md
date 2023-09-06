@@ -10,10 +10,6 @@ Veg Garden Panner is a website which generates a calendar of sowing dates for ve
 
 ## Demo
 
-Here is a live demo: https://veg-garden-planner.herokuapp.com
-
-## Site
-
 ### Select
 
 ![Add Plant](/Media/SelectPage.gif)
